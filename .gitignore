@@ -1,0 +1,5 @@
+.idea
+.venv
+__pycache__
+card.py 
+card_game.txt
