@@ -1,19 +1,15 @@
-import seaborn as sns
-import matplotlib.pyplot as plt
+import pandas as pd
 
-sns.set_theme(style="whitegrid", palette="colorblind")
-df = sns.load_dataset("tips")
+# Read the file
+FILE_PATH = "data_files/goals.csv"
+df = pd.read_csv(FILE_PATH, index_col="player_name")
 
-fig, ax = plt.subplots(figsize=(7, 5))
+print(df.head())
+print(df.info())
+print(df.describe().to_string())
 
-sns.kdeplot(data=df, x="total_bill", y="tip",
-            fill=True,
-            cmap="Blues",       # color map for contours
-            thresh=0.05,        # cut off very low density regions
-            levels=10,          # number of contour levels
-            ax=ax)
-
-ax.set_title("2D KDE — Bill vs Tip")
-ax.set_xlabel("Total Bill ($)")
-ax.set_ylabel("Tip ($)")
-plt.show()
+print(df.mean(numeric_only=True))
+print(df.median(numeric_only=True))
+print(df.mode(numeric_only=True).to_string())
+print(df.std(numeric_only=True))
+print(df.corr(numeric_only=True).to_string())
